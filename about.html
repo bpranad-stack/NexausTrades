@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Nexaus Trade</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: DM Serif Display & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <style>
+        /* Shared Styles from Index */
+        :root {
+            --accent-orange: #ea580c;
+            --bg-dark: #0f172a;
+            --text-light: #f1f5f9;
+            --nav-border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--text-light); mix-blend-mode: difference; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: all 0.2s; mix-blend-mode: exclusion; }
+
+        /* Scroll Reveal */
+        .scroll-reveal { opacity: 0; transform: translateY(20px); }
+
+        /* Magnetic Button */
+        .magnetic-btn { position: relative; overflow: hidden; z-index: 1; }
+        .magnetic-btn::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.3s ease; z-index: -1;
+        }
+        .magnetic-btn:hover::before { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 px-6 py-5 flex justify-between items-center bg-stone-900/90 backdrop-blur-md border-b border-white/10" id="navbar">
+        <a href="index.html" class="text-3xl font-extrabold tracking-wider z-50 relative flex items-center gap-3 text-white">
+            <img src="logo.jpg" onerror="this.src='https://placehold.co/100x100/1e293b/FFF?text=N'" alt="Nexaus Trade Logo" class="w-10 h-10 rounded-full border-2 border-orange-600 shadow-lg object-cover">
+            <span class="font-serif">Nexaus Trade</span>
+        </a>
+        
+        <div class="hidden md:flex gap-10 items-center text-white/80">
+            <a href="index.html" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">Home</a>
+            <a href="#" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition text-orange-500">About</a>
+            <a href="index.html#products" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">Spices</a>
+            <a href="index.html#training" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">Academy</a>
+            <a href="index.html#contact" class="magnetic-btn px-6 py-2 rounded-full bg-orange-600 text-white text-sm font-bold uppercase hover:bg-orange-700 hover:shadow-xl transition duration-300 transform hover:-translate-y-0.5">Get Quote</a>
+        </div>
+    </nav>
+
+    <!-- HEADER / HERO -->
+    <header class="relative pt-40 pb-20 px-6 bg-stone-900 overflow-hidden">
+        <!-- Background decorative blob -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <span class="text-orange-500 font-bold uppercase tracking-widest text-sm mb-4 block scroll-reveal">Our Story</span>
+            <h1 class="text-5xl md:text-8xl text-white font-serif mb-8 scroll-reveal leading-tight">
+                Exporting <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">India's Soul</span>
+            </h1>
+            <p class="text-xl text-white/60 max-w-3xl mx-auto leading-relaxed scroll-reveal font-light">
+                Bridging the gap between India's finest farms and the world's kitchens with purity, honesty, and excellence.
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section class="py-20 px-6 md:px-20 bg-stone-900 relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Company Intro -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-32">
+                <div class="scroll-reveal order-2 md:order-1">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="about-spice-mix.jpg" onerror="this.src='https://images.unsplash.com/photo-1509358271058-acd22cc93898?q=80&w=1000&auto=format&fit=crop'" class="w-full h-auto object-cover transform hover:scale-105 transition duration-700" alt="Indian Spices">
+                    </div>
+                </div>
+                <div class="scroll-reveal order-1 md:order-2">
+                    <h2 class="text-4xl md:text-5xl text-white font-serif mb-6">Nexaus Traders Pvt. Ltd.</h2>
+                    <p class="text-white/70 mb-6 leading-relaxed text-lg">
+                        At Nexaus Traders Pvt. Ltd., we bring the authentic taste of India to the world. Specializing in premium spices and gram flour (besan), we export to markets including the UK, Saudi Arabia, and Africa, delivering quality, freshness, and reliability in every shipment.
+                    </p>
+                    <p class="text-white/70 leading-relaxed text-lg border-l-4 border-orange-600 pl-6 italic">
+                        "Founded on values of purity, honesty, and excellence, we focus on building long-term relationships with clients rather than just completing transactions."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vision Section (Full Width) -->
+            <div class="bg-stone-800 rounded-3xl p-10 md:p-20 text-center mb-32 scroll-reveal relative overflow-hidden border border-white/5">
+                <div class="absolute inset-0 bg-gradient-to-b from-orange-900/20 to-transparent"></div>
+                <div class="relative z-10 max-w-4xl mx-auto">
+                    <i class="fa-solid fa-earth-americas text-6xl text-orange-500 mb-8"></i>
+                    <h2 class="text-4xl md:text-6xl text-white font-serif mb-8">Our Vision</h2>
+                    <p class="text-2xl md:text-3xl text-white/80 font-serif leading-normal">
+                        To become a globally respected Indian export house, representing India’s flavours, culture, and authenticity while spreading its soulful taste worldwide.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mission & Why Choose Us (Grid) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <!-- Mission Card -->
+                <div class="bg-stone-800/50 rounded-3xl p-10 border border-white/10 hover:border-orange-600/30 transition-all duration-300 scroll-reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 rounded-full bg-orange-600 flex items-center justify-center text-white text-xl">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3 class="text-3xl text-white font-serif">Our Mission</h3>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <span class="text-orange-500 text-lg mt-1"><i class="fa-solid fa-check"></i></span>
+                            <span class="text-white/70">Deliver high-quality spices and gram flour that meet international standards.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-orange-500 text-lg mt-1"><i class="fa-solid fa-check"></i></span>
+                            <span class="text-white/70">Build trust and long-term partnerships with global clients.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-orange-500 text-lg mt-1"><i class="fa-solid fa-check"></i></span>
+                            <span class="text-white/70">Support Indian farmers and suppliers through fair and sustainable trade.</span>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-orange-500 text-lg mt-1"><i class="fa-solid fa-check"></i></span>
+                            <span class="text-white/70">Ensure timely delivery and consistent quality in every shipment.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Why Choose Us Card -->
+                <div class="bg-stone-800/50 rounded-3xl p-10 border border-white/10 hover:border-orange-600/30 transition-all duration-300 scroll-reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 rounded-full bg-white text-stone-900 flex items-center justify-center text-xl">
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <h3 class="text-3xl text-white font-serif">Why Choose Us</h3>
+                    </div>
+                    <ul class="space-y-5">
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 min-w-[24px] text-orange-500 text-lg">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-lg">Premium Quality</strong>
+                                <span class="text-white/50 text-sm">Authentic, carefully sourced, and hygienically processed products.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 min-w-[24px] text-orange-500 text-lg">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-lg">Global Reach</strong>
+                                <span class="text-white/50 text-sm">Strong supply chain and connections in the UK, Saudi Arabia, and Africa.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 min-w-[24px] text-orange-500 text-lg">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-lg">Reliable Delivery</strong>
+                                <span class="text-white/50 text-sm">Smooth logistics and on-time shipments.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 min-w-[24px] text-orange-500 text-lg">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-lg">Transparency & Trust</strong>
+                                <span class="text-white/50 text-sm">Clear communication, fair pricing, and client-focused service.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="mt-1 min-w-[24px] text-orange-500 text-lg">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white block text-lg">Value-Driven</strong>
+                                <span class="text-white/50 text-sm">Integrity, commitment, and customer satisfaction guide every step.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
+            
+            <!-- Brand -->
+            <div class="text-center md:text-left">
+                <h2 class="text-3xl text-white font-serif mb-3">Nexaus Traders Pvt. Ltd.</h2>
+                <p class="text-white/40 italic text-lg">Exporting India's Soul</p>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="flex flex-col items-center md:items-end gap-5">
+                <span class="text-white font-bold text-2xl tracking-wide">Pratham Kotecha</span>
+                
+                <div class="flex flex-col md:flex-row gap-4 md:gap-8 text-white/70 text-base font-light">
+                    <a href="mailto:exports@nexaus.com" class="flex items-center gap-3 hover:text-orange-500 transition justify-center md:justify-end group">
+                        <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-orange-600 transition duration-300"><i class="fa-solid fa-envelope text-orange-500 group-hover:text-white text-xs"></i></span>
+                        <span>exports@nexaus.com</span>
+                    </a>
+                    <a href="tel:+919373099008" class="flex items-center gap-3 hover:text-orange-500 transition justify-center md:justify-end group">
+                         <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-orange-600 transition duration-300"><i class="fa-solid fa-phone text-orange-500 group-hover:text-white text-xs"></i></span>
+                        <span>+91 9373099008</span>
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex gap-4 mt-2">
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#0077b5] hover:text-white transition duration-300 border border-white/10 hover:border-[#0077b5]">
+                        <i class="fa-brands fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="https://wa.me/919373099008" target="_blank" class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-[#25D366] hover:text-white transition duration-300 border border-white/10 hover:border-[#25D366]">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-white/10 text-center text-white/20 text-sm">
+            &copy; 2024 Nexaus Traders Pvt. Ltd. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // 1. Smooth Scroll (Lenis)
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // 2. Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX, posY = e.clientY;
+            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        // 3. Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll(".scroll-reveal").forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 1, ease: "power2.out", scrollTrigger: { trigger: element, start: "top 85%" } }
+            );
+        });
+
+        // 4. Magnetic Button
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left, y = e.clientY - rect.top;
+                btn.style.setProperty('--mouse-x', `${x}px`);
+                btn.style.setProperty('--mouse-y', `${y}px`);
+                gsap.to(btn, { x: (x - rect.width/2) * 0.2, y: (y - rect.height/2) * 0.2, duration: 0.5 });
+            });
+            btn.addEventListener('mouseleave', () => gsap.to(btn, { x: 0, y: 0, duration: 0.5 }));
+        });
+    </script>
+</body>
+</html>
