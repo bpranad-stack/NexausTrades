@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Nexaus Traders</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        :root {
+            --accent-orange: #ea580c;
+            --bg-dark: #0c0a09; /* Stone-950 */
+            --text-light: #f1f5f9;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            cursor: none;
+            overflow: hidden; /* Lock scroll for 404 */
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: var(--text-light); mix-blend-mode: difference; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5); transition: width 0.2s, height 0.2s, background-color 0.2s; mix-blend-mode: exclusion; }
+
+        /* Magnetic Button */
+        .magnetic-btn { position: relative; overflow: hidden; z-index: 1; }
+        .magnetic-btn::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.3s ease; z-index: -1;
+        }
+        .magnetic-btn:hover::before { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- NAVIGATION (Simplified) -->
+    <nav class="fixed w-full z-50 px-6 py-5 flex justify-between items-center bg-transparent backdrop-blur-sm border-b border-white/5">
+        <a href="index.html" class="text-3xl font-extrabold tracking-wider z-50 relative flex items-center gap-3 text-white">
+            <img src="logo.jpg" onerror="this.src='https://placehold.co/100x100/1e293b/FFF?text=N'" alt="Nexaus Traders Logo" class="w-10 h-10 rounded-full border-2 border-orange-600 shadow-lg object-cover">
+            <span class="font-serif">Nexaus Traders</span>
+        </a>
+    </nav>
+
+    <!-- 404 CONTENT -->
+    <main class="h-screen w-full flex flex-col justify-center items-center text-center px-6 relative bg-stone-950">
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <span class="text-orange-500 font-bold uppercase tracking-[0.3em] text-sm mb-6 animate-pulse">Error 404</span>
+        
+        <h1 class="text-8xl md:text-9xl font-serif text-white mb-4 leading-none opacity-0 translate-y-10" id="error-title">
+            Out of <span class="text-orange-600">Thyme?</span>
+        </h1>
+        
+        <p class="text-white/60 text-lg md:text-xl max-w-xl mb-10 opacity-0 translate-y-10" id="error-text">
+            We couldn't find the page you're looking for. It seems this link has expired or the page has been moved.
+        </p>
+        
+        <div class="opacity-0 translate-y-10" id="error-btn">
+            <a href="index.html" class="magnetic-btn px-10 py-4 bg-white text-stone-950 font-bold uppercase tracking-widest rounded-full hover:bg-orange-600 hover:text-white transition duration-300 shadow-xl inline-flex items-center gap-3">
+                <i class="fa-solid fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </main>
+
+    <!-- ANIMATION SCRIPTS -->
+    <script>
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = `${e.clientX}px`; cursorDot.style.top = `${e.clientY}px`;
+            cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
+        });
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => { cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px'; cursorOutline.style.borderColor = 'var(--accent-orange)'; });
+            link.addEventListener('mouseleave', () => { cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px'; cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.5)'; });
+        });
+
+        // Intro Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline();
+            tl.to("#error-title", { opacity: 1, y: 0, duration: 1, ease: "power3.out" })
+              .to("#error-text", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.6")
+              .to("#error-btn", { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, "-=0.6");
+        });
+    </script>
+</body>
+</html>
