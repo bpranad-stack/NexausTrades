@@ -84,19 +84,41 @@
             <img src="logo.jpg" onerror="this.src='https://placehold.co/100x100/1e293b/FFF?text=N'" alt="Nexaus Traders Logo" class="w-10 h-10 rounded-full border-2 border-orange-600 shadow-lg object-cover">
             <span class="font-serif">Nexaus Traders</span>
         </a>
+        
+        <!-- Desktop Menu -->
         <div class="hidden md:flex gap-10 items-center text-white/80">
             <a href="about.html" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">About</a>
             <a href="products.html" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">Spices</a>
             <a href="academy.html" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">Academy</a>
-            <a href="contact.html" class="magnetic-btn px-6 py-2 rounded-full bg-orange-600 text-white text-sm font-bold uppercase hover:bg-orange-700 hover:shadow-xl transition duration-300 transform hover:-translate-y-0.5">Get Quote</a>
+            <!-- Updated Button: Fixed hover state (White BG, Orange Text) and removed CSS transform conflict -->
+            <a href="contact.html" class="magnetic-btn px-6 py-2 rounded-full bg-orange-600 text-white text-sm font-bold uppercase hover:bg-white hover:text-orange-600 transition-colors duration-300 shadow-lg">Get Quote</a>
         </div>
-        <div class="md:hidden z-50 text-white"><i class="fa-solid fa-bars text-2xl"></i></div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden z-50 text-white focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
     </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-stone-950 flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+        <a href="index.html" class="text-2xl font-serif text-white hover:text-orange-500 transition">Home</a>
+        <a href="about.html" class="text-2xl font-serif text-white hover:text-orange-500 transition">About</a>
+        <a href="products.html" class="text-2xl font-serif text-white hover:text-orange-500 transition">Spices</a>
+        <a href="academy.html" class="text-2xl font-serif text-white hover:text-orange-500 transition">Academy</a>
+        <a href="contact.html" class="text-2xl font-serif text-orange-500 font-bold uppercase tracking-wider">Get Quote</a>
+    </div>
 
     <!-- HERO SECTION -->
     <header class="relative min-h-screen flex flex-col justify-center items-center px-4 overflow-hidden pt-24">
         <div class="absolute inset-0 z-0">
-            <img src="hero-spices.jpg" onerror="this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover parallax-bg brightness-[0.4]" alt="Spices Market">
+            <!-- VIDEO BACKGROUND -->
+            <!-- Removed 'loop' attribute so the video plays once and stops on the last frame -->
+            <video autoplay muted playsinline poster="hero-spices.jpg" class="w-full h-full object-cover brightness-[0.4]" id="hero-video">
+                <source src="hero-video.mp4" type="video/mp4">
+                <!-- Fallback Image if video fails -->
+                <img src="hero-spices.jpg" alt="Spices Market" class="w-full h-full object-cover">
+            </video>
             <div class="absolute inset-0 bg-gradient-to-t from-orange-900/40 via-transparent to-black/20"></div>
         </div>
         <div class="relative z-10 text-center text-white max-w-4xl">
@@ -148,7 +170,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12" id="product-grid">
                 <!-- 1 -->
-                <div class="group relative bg-stone-950 rounded-3xl p-6 border border-white/5 hover:border-orange-600/50 transition-all duration-500 hover:shadow-2xl product-card opacity-0">
+                <div class="group relative bg-stone-950 rounded-3xl p-6 border border-white/5 hover:border-orange-600/50 transition-all duration-500 hover:shadow-2xl product-card">
                     <div class="aspect-[3/4] w-full bg-stone-900 rounded-2xl overflow-hidden relative flex items-center justify-center mb-6 border border-white/5">
                         <img src="turmeric.jpg" onerror="this.src='https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=400&auto=format&fit=crop'" class="h-[85%] w-auto object-contain drop-shadow-2xl transform transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:-translate-y-4" alt="Turmeric">
                     </div>
@@ -159,7 +181,7 @@
                     </div>
                 </div>
                 <!-- 2 -->
-                <div class="group relative bg-stone-950 rounded-3xl p-6 border border-white/5 hover:border-orange-600/50 transition-all duration-500 hover:shadow-2xl product-card opacity-0">
+                <div class="group relative bg-stone-950 rounded-3xl p-6 border border-white/5 hover:border-orange-600/50 transition-all duration-500 hover:shadow-2xl product-card">
                     <div class="aspect-[3/4] w-full bg-stone-900 rounded-2xl overflow-hidden relative flex items-center justify-center mb-6 border border-white/5">
                         <img src="kashmiri-chilli.jpg" onerror="this.src='https://images.unsplash.com/photo-1588616335123-2b28c03567e9?q=80&w=400&auto=format&fit=crop'" class="h-[85%] w-auto object-contain drop-shadow-2xl transform transition-transform duration-700 ease-out group-hover:scale-110 group-hover:rotate-3 group-hover:-translate-y-4" alt="Chilli">
                     </div>
@@ -170,7 +192,7 @@
                     </div>
                 </div>
                 <!-- 3 -->
-                <div class="group relative bg-stone-950 rounded-3xl p-6 border border-white/5 hover:border-orange-600/50 transition-all duration-500 hover:shadow-2xl product-card opacity-0">
+                <div class="group relative bg-stone-950 rounded-3xl p-6 border border-white/5 hover:border-orange-600/50 transition-all duration-500 hover:shadow-2xl product-card">
                     <div class="aspect-[3/4] w-full bg-stone-900 rounded-2xl overflow-hidden relative flex items-center justify-center mb-6 border border-white/5">
                         <img src="cumin.jpg" onerror="this.src='https://images.unsplash.com/photo-1599311894957-6c2e3650215b?q=80&w=400&auto=format&fit=crop'" class="h-[85%] w-auto object-contain drop-shadow-2xl transform transition-transform duration-700 ease-out group-hover:scale-110 group-hover:-rotate-3 group-hover:-translate-y-4" alt="Cumin">
                     </div>
@@ -226,6 +248,7 @@
                                 <li>Advanced Export Documentation</li>
                                 <li>Step-by-step Shipment process</li>
                                 <li>Finding & Approaching Buyers</li>
+                                <li>Learn about Govt Schemes</li>
                             </ul>
                         </div>
                     </div>
@@ -235,7 +258,7 @@
                         <div class="flex-shrink-0 w-8 h-8 mt-1 bg-yellow-400 rounded-full flex items-center justify-center text-stone-900"><i class="fa-solid fa-chart-line text-sm"></i></div>
                         <div>
                             <a href="academy.html" class="font-bold text-white block group-hover:text-yellow-400 transition">Premium Export Course</a>
-                            <span class="text-xs text-yellow-400 font-bold uppercase tracking-wider mb-2 block">2 Months (Weekends)</span>
+                            <span class="text-xs text-yellow-400 font-bold uppercase tracking-wider mb-2 block">2 Months (Weekends Only)</span>
                             <ul class="text-sm text-white/60 list-disc list-inside space-y-1">
                                 <li>Complete Export-Import Process & Advanced Documentation</li>
                                 <li>Intl. Market Research, Finding Buyers & Negotiation</li>
@@ -290,13 +313,12 @@
     <footer class="bg-stone-950 py-12 border-t border-white/10 relative z-10">
         <div class="container mx-auto px-6">
             
-            <!-- Top Section: Left & Right Content -->
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10 mb-12">
+            <!-- Top Section -->
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-center gap-10 mb-12">
                 
-                <!-- LEFT SIDE: Personal Info & Contact -->
+                <!-- LEFT -->
                 <div class="text-center md:text-left space-y-4">
                     <h3 class="text-2xl font-serif text-white">Pratham Kotecha</h3>
-                    
                     <div class="flex flex-col gap-3 text-white/70 items-center md:items-start">
                         <a href="mailto:exports@nexaustrade.com" class="flex items-center gap-3 hover:text-orange-500 transition group">
                             <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-all"><i class="fa-solid fa-envelope text-sm"></i></span>
@@ -309,26 +331,13 @@
                     </div>
                 </div>
 
-                <!-- RIGHT SIDE: Brand & Socials -->
+                <!-- RIGHT -->
                 <div class="flex flex-col items-center md:items-end gap-6 text-center md:text-right">
                     <h2 class="text-3xl font-serif text-white">Nexaus Traders</h2>
-
-                    <!-- Social Icons -->
                     <div class="flex gap-4">
-                        <!-- LINKEDIN -->
-                        <a href="https://www.linkedin.com/company/nexaus-traders-pvt-ltd/" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-stone-900 border border-white/10 text-white/60 hover:bg-[#0077b5] hover:border-[#0077b5] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,119,181,0.4)]">
-                            <i class="fa-brands fa-linkedin-in text-lg"></i>
-                        </a>
-                        
-                        <!-- INSTAGRAM -->
-                        <a href="https://www.instagram.com/nexaustraderspvtltd?igsh=MTN4NGtnZm92NnA3eA%3D%3D&utm_source=qr" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-stone-900 border border-white/10 text-white/60 hover:bg-[#E1306C] hover:border-[#E1306C] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(225,48,108,0.4)]">
-                            <i class="fa-brands fa-instagram text-lg"></i>
-                        </a>
-                        
-                        <!-- WHATSAPP -->
-                        <a href="https://wa.me/message/IHEKDE7BVJ7JJ1" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-stone-900 border border-white/10 text-white/60 hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(37,211,102,0.4)]">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                        </a>
+                        <a href="https://www.linkedin.com/company/nexaus-traders-pvt-ltd/" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-stone-900 border border-white/10 text-white/60 hover:bg-[#0077b5] hover:border-[#0077b5] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(0,119,181,0.4)]"><i class="fa-brands fa-linkedin-in text-lg"></i></a>
+                        <a href="https://www.instagram.com/nexaustraderspvtltd?igsh=MTN4NGtnZm92NnA3eA%3D%3D&utm_source=qr" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-stone-900 border border-white/10 text-white/60 hover:bg-[#E1306C] hover:border-[#E1306C] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(225,48,108,0.4)]"><i class="fa-brands fa-instagram text-lg"></i></a>
+                        <a href="https://wa.me/message/IHEKDE7BVJ7JJ1" target="_blank" class="w-10 h-10 flex items-center justify-center rounded-full bg-stone-900 border border-white/10 text-white/60 hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(37,211,102,0.4)]"><i class="fa-brands fa-whatsapp text-lg"></i></a>
                     </div>
                     
                     <!-- Orange City Marketing Logo -->
@@ -393,6 +402,25 @@
             button.addEventListener('mouseleave', () => { gsap.to(button, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" }); });
         });
 
+        // Mobile Menu Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileIcon = mobileBtn.querySelector('i');
+        let isMenuOpen = false;
+
+        mobileBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileIcon.classList.remove('fa-bars');
+                mobileIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileIcon.classList.remove('fa-xmark');
+                mobileIcon.classList.add('fa-bars');
+            }
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             const tl = gsap.timeline();
             tl.from('.preloader-logo', { scale: 0.5, opacity: 0, duration: 0.8, ease: "elastic.out(1, 0.5)" });
@@ -406,17 +434,27 @@
             });
             gsap.to(".parallax-bg", { yPercent: 30, ease: "none", scrollTrigger: { trigger: "header", start: "top top", end: "bottom top", scrub: true } });
 
+            // Standard Scroll Reveal
             const revealElements = document.querySelectorAll(".scroll-reveal");
             revealElements.forEach(element => {
                 gsap.fromTo(element, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out", scrollTrigger: { trigger: element, start: "top 90%", toggleActions: "play none none none" } });
             });
 
+            // GSAP Product Grid visibility
             gsap.set(".product-card", { y: 50, opacity: 0 });
             ScrollTrigger.batch(".product-card", {
                 start: "top 85%",
-                onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: "power3.out", overwrite: true })
+                onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: "power3.out", overwrite: true })
             });
             setTimeout(() => { document.querySelectorAll('.product-card').forEach(card => { if (getComputedStyle(card).opacity === '0') { gsap.to(card, { opacity: 1, y: 0, duration: 0.5 }); }}); }, 1000);
+            
+            // Force Video Pause (Optional for single play)
+            const video = document.getElementById('hero-video');
+            if(video) {
+                video.addEventListener('ended', () => {
+                    video.pause();
+                });
+            }
         });
     </script>
 </body>
