@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexaus Traders | Global Spice Export & Consultancy</title>
     
+    <!-- Favicon / Site Icon -->
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <link rel="shortcut icon" href="logo.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="logo.jpg">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -90,7 +95,7 @@
             <a href="about.html" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">About</a>
             <a href="products.html" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">Spices</a>
             <a href="academy.html" class="nav-link-item text-sm font-semibold tracking-wider uppercase transition hover:text-orange-500">Academy</a>
-            <!-- Updated Button: Fixed hover state (White BG, Orange Text) and removed CSS transform conflict -->
+            <!-- Updated Button: Fixed hover state (White BG, Orange Text) -->
             <a href="contact.html" class="magnetic-btn px-6 py-2 rounded-full bg-orange-600 text-white text-sm font-bold uppercase hover:bg-white hover:text-orange-600 transition-colors duration-300 shadow-lg">Get Quote</a>
         </div>
 
@@ -263,7 +268,7 @@
                                 <li>Complete Export-Import Process & Advanced Documentation</li>
                                 <li>Intl. Market Research, Finding Buyers & Negotiation</li>
                                 <li>Live Case Studies, Practical Guidance & Visit</li>
-                                <li>Learn about Government Schemes, Incentives & Subsidies</li>
+                                <li>Learn about Govt Schemes, Incentives & Subsidies</li>
                                 <li>Exclusive Notes, Templates, Formats & Mentorship</li>
                             </ul>
                         </div>
@@ -440,7 +445,6 @@
                 gsap.fromTo(element, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out", scrollTrigger: { trigger: element, start: "top 90%", toggleActions: "play none none none" } });
             });
 
-            // GSAP Product Grid visibility
             gsap.set(".product-card", { y: 50, opacity: 0 });
             ScrollTrigger.batch(".product-card", {
                 start: "top 85%",
